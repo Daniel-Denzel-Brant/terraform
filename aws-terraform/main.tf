@@ -30,10 +30,10 @@ module "defaults" {
   to_port     = 80
   cidr_blocks = ["111.243.187.126/32"]
 }, {
-  from_port   = 80
+  from_port   = 3000
   name        = "Node"
   protocol    = "tcp"
-  to_port     = 80
+  to_port     = 3000
   cidr_blocks = ["111.243.187.126/32"]
 }
 ]
