@@ -9,7 +9,7 @@ provider "aws" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "id-rsa-public"
-  public_key = 
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1+ZbpnVVtvD4dXUhZeShIE3plR7PZd9OjKk5arN60BRvlJ8Qbvo0jJH/wl2YA4sjTowkuVpwBIFt7PBJhI2TKmPoR4FCBcE4rucuLQ7d/JofsNh7xlUg8iJ6q3PEXyn+9c2lYZPbvXEwS33w75zYIxLYK+bUtqxxW+SCkWHGPsLTPCvZy33WYG2kjoquNdYZKCH23njEGp1IeSb+dpCK3CetDEJ6Pcm8/eSCkouGONYi7V8x+RqoVXlc2fkxBQF8hpl2qjly/v38YWXUTFNI4ygneWzjt/Hd7o5ZvyzRJrTNqz9vd1sG7ozEEBfYMBPephO6dr9PU6iY7ARCSMLHndz8hiuQusvI9riPLV/84YF0AMQAu2McOhxiImejXfvRITiBOZWW+lgqc9cNytAqQLke3jroyFdq0d5dt1fYsPzdz/xHfWif8piGIEKtkxy7mNK5ehf09xThd8SGv/roS1uoAxjvzXpbX6emYyI8k/3/KGPUvC8M096V68EBJDP0="
 }
 
 data "aws_subnets" "subnets" {
@@ -27,7 +27,7 @@ data "aws_subnet" "subnet" {
 
 resource "aws_instance" "instance" {
   for_each                    = toset(data.aws_subnets.subnets.ids)
-  ami                         = var.ec2.os_type == "linux" ? var.linux_ami : var.ubuntu_ami
+  ami                         = var.ec2.os_type == var.linux_ami
   availability_zone           = var.ec2.availability_zone
   instance_type               = var.ec2.instance_type
   associate_public_ip_address = true

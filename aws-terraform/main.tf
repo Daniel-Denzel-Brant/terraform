@@ -47,7 +47,6 @@ module "defaults" {
   availability_zone = "ap-northeast-1c"
 }
 
-  ubuntu_ami = "ami-0b828c1c5ac3f13ee"
   linux_ami = "ami-0329eac6c5240c99d"
   assume_role_arn = module.assume_role.role_arn
   subnet_id = "subnet-02e649598a56e67f3"
