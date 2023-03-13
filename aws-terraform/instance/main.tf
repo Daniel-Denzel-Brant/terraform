@@ -8,13 +8,13 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "deployer" {
-  key_name   = "id-rsa-public"
+  key_name   = "terraform-service-key"
   public_key = var.key_pair
 }
 
 resource "aws_instance" "instance" {
   for_each                    = toset(data.aws_subnets.subnets.ids)
-  ami                         = var.ec2.os_type == var.linux_ami
+  ami                         = var.linux_ami
   availability_zone           = var.ec2.availability_zone
   instance_type               = var.ec2.instance_type
   associate_public_ip_address = true
