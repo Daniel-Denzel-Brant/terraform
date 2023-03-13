@@ -9,20 +9,7 @@ provider "aws" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "id-rsa-public"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1+ZbpnVVtvD4dXUhZeShIE3plR7PZd9OjKk5arN60BRvlJ8Qbvo0jJH/wl2YA4sjTowkuVpwBIFt7PBJhI2TKmPoR4FCBcE4rucuLQ7d/JofsNh7xlUg8iJ6q3PEXyn+9c2lYZPbvXEwS33w75zYIxLYK+bUtqxxW+SCkWHGPsLTPCvZy33WYG2kjoquNdYZKCH23njEGp1IeSb+dpCK3CetDEJ6Pcm8/eSCkouGONYi7V8x+RqoVXlc2fkxBQF8hpl2qjly/v38YWXUTFNI4ygneWzjt/Hd7o5ZvyzRJrTNqz9vd1sG7ozEEBfYMBPephO6dr9PU6iY7ARCSMLHndz8hiuQusvI9riPLV/84YF0AMQAu2McOhxiImejXfvRITiBOZWW+lgqc9cNytAqQLke3jroyFdq0d5dt1fYsPzdz/xHfWif8piGIEKtkxy7mNK5ehf09xThd8SGv/roS1uoAxjvzXpbX6emYyI8k/3/KGPUvC8M096V68EBJDP0="
-}
-
-data "aws_subnets" "subnets" {
-  filter {
-    name   = "vpc-id"
-    values = [var.vpc_id]
-  }
-}
-
-data "aws_subnet" "subnet" {
-  tags = {
-    Subnet = "1"
-  }
+  public_key = var.key_pair
 }
 
 resource "aws_instance" "instance" {

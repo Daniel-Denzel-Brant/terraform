@@ -21,11 +21,6 @@ variable "ec2" {
   })
 }
 
-variable "ubuntu_ami" {
-  description = "ubuntu ami"
-  type        = string
-  //default     = "ami-04ff9e9b51c1f62ca"
-}
 variable "linux_ami" {
   description = "linux ami"
   type        = string
@@ -41,5 +36,9 @@ variable "subnet_id" {
 }
 
 variable "vpc_id" {
+  type = string
+}
+
+variable "key_pair" {
   type = string
 }
